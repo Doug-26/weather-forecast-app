@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [RouterModule],
+  imports: [],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
   
-  constructor(private auth: AuthService) { }
+  isAuthenticated: boolean = false;
+
+  constructor(private auth: AuthService, private router : Router) { 
+    // Subscribe to the authentication status
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+  }
 
   // Function to handle login
   // Redirects the user to the Auth0 login page
@@ -22,5 +29,9 @@ export class NavBarComponent {
   // Redirects the user to the Auth0 logout page
   logout() {
     this.auth.logout();
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
   }
 }
