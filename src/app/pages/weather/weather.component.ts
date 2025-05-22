@@ -4,10 +4,11 @@ import { WeatherService } from '../../services/weather.service';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 import { ErrorComponent } from '../error/error.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-weather',
-  imports: [NavBarComponent, CommonModule, ErrorComponent],
+  imports: [NavBarComponent, CommonModule, ErrorComponent, SpinnerComponent],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
