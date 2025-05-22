@@ -24,7 +24,7 @@ export class HomeComponent {
 
   }
 
-  getWeather() {
+  searchWeather() {
     this.router.navigate(['/weather'], { queryParams: { city: this.city } });
   }
 }
