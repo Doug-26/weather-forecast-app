@@ -25,8 +25,6 @@ export class HomeComponent {
   }
 
   getWeather() {
-    // Logic to get weather data for the specified city
-    // This could involve making an API call to a weather service
-    console.log(`Getting weather for ${this.city}`);
+    this.router.navigate(['/weather'], { queryParams: { city: this.city } });
   }
 }

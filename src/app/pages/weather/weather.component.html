@@ -1,1 +1,28 @@
-<p>weather works!</p>
+@if (weatherData) {
+<div class="container mt-4 text-center">
+    <h3>Current Weather in {{ city }}</h3>
+
+    <div class="row fw-bold bg-light rounded border-top border-right pt-2 pb-2">
+        <div class="col-12 col-md-2">Date</div>
+        <div class="col-12 col-md-2">Temp (°F)</div>
+        <div class="col-12 col-md-2">Description</div>
+        <div class="col-12 col-md-2">Main</div>
+        <div class="col-12 col-md-2">Pressure</div>
+        <div class="col-12 col-md-2">Humidity</div>
+    </div>
+
+    <div class="row border p-2 rounded text-center">
+        <div class="col-12 col-md-2">{{ todayDate }}</div>
+        <div class="col-12 col-md-2">{{ weatherData.main.temp | number:'1.0-0' }}</div>
+        <div class="col-12 col-md-2">{{ weatherData.weather[0].description }}</div>
+        <div class="col-12 col-md-2">{{ weatherData.weather[0].main }}</div>
+        <div class="col-12 col-md-2">{{ weatherData.main.pressure }}</div>
+        <div class="col-12 col-md-2">{{ weatherData.main.humidity }}%</div>
+      </div>
+</div>
+} @else {
+<div class="container mt-4">
+    <h3>Weather Data Not Available</h3>
+    <p>Please enter a city name to get the weather data.</p>
+</div>
+}
