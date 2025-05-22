@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
-import { DecimalPipe } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-weather',
-  imports: [DecimalPipe],
+  imports: [NavBarComponent, CommonModule],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
@@ -15,34 +16,16 @@ export class WeatherComponent {
   todayDate: string = '';
 
   constructor(
-    // Injecting the ActivatedRoute to get route parameters
+    private router: Router,
     private route: ActivatedRoute,
-    // Injecting the WeatherService to fetch weather data
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
   ) { }
 
   ngOnInit() {
     // Getting the city parameter from the route
-    // this.route.queryParams.subscribe(params => {
-    //   this.city = params['city'];
-    //   if (this.city) {
-    //     this.weatherData = null; // Reset weather data before fetching new data
-    //     this.weatherService.getWeather(this.city).subscribe(data => {
-    //       this.weatherData = data;
-    //     }, error => {
-    //       console.error('Error fetching weather data:', error);
-    //       this.weatherData = null; // Reset weather data on error
-    //     });
-    //   }
-    // })
-
-    console.log('WeatherComponent initialized');
-    // Getting the city parameter from the route
     this.route.queryParams.subscribe(params => {
       this.city = params['city'] || '';
       if (this.city) {
-        this.weatherData = null; // Reset weather data before fetching new data
-
         const now = new Date();
         // Formatting the date as MM/DD/YYYY
         this.todayDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
@@ -59,7 +42,10 @@ export class WeatherComponent {
         });
       }
     });
+  }
 
+  goHome() {
+    this.router.navigate(['/home']);
   }
 
 }
