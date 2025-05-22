@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [],
+  imports: [NavBarComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

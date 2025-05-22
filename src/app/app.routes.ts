@@ -8,4 +8,5 @@ export const routes: Routes = [
     { path: '', component: LandingComponent},
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'weather', component: WeatherComponent, canActivate: [AuthGuard] },
+    { path: '**', redirectTo: '' } // Redirect to landing page for any unknown routes
 ];
