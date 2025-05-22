@@ -2,6 +2,22 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
 
+# WeatherForecast
+- Angular 19 – Standalone component architecture
+- TypeScript – Type-safe codebase
+- Bootstrap 5 – Responsive UI framework
+- OpenWeatherMap API – Weather data provider
+
+#Component Structure
+“I structured the application using Angular standalone components for simplicity and performance. It includes:
+
+- LandingComponent for unauthenticated users
+- HomeComponent for entering city details
+- WeatherComponent to display forecast
+- NavbarComponent for consistent navigation
+- SpinnerComponent for loading while fetching data
+- ErrorPageComponent for graceful error handling”
+
 ## Development server
 
 To start a local development server, run:
