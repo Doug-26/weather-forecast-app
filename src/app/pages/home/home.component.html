@@ -1,1 +1,9 @@
 <app-nav-bar></app-nav-bar>
+<div class="container mt-4 text-center" *ngIf="auth.user$| async as user">
+    <h1>Welcome, {{ user.name }}</h1>
+    <p>https://github.com/{{ user.nickname | lowercase }}</p>
+    <div class="input-group mt-3">
+        <input class="form-control" placeholder="Enter your city" [(ngModel)]="city" />
+        <button class="btn btn-primary" (click)="getWeather()">Get Weather</button>
+    </div>
+</div>
