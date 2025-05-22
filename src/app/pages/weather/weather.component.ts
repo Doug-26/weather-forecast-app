@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-weather',
-  imports: [NavBarComponent, CommonModule],
+  imports: [NavBarComponent, CommonModule, ErrorComponent],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
@@ -15,6 +16,7 @@ export class WeatherComponent {
   weatherData: any;
   todayDate: string = '';
   loading: boolean = true;
+  error: boolean = false;
 
   constructor(
     private router: Router,
@@ -42,7 +44,8 @@ export class WeatherComponent {
             }, 1000);
           },
           error: (error) => {
-            console.error('Error fetching weather data:', error);
+            this.loading = false;
+            this.error = true;
           }
         });
       }

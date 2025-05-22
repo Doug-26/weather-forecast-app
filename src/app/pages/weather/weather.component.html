@@ -6,47 +6,41 @@
   </div>
 </div>
 } @else {
-@if (weatherData) {
-<div class="container mt-4 text-center">
-  <div class="table-responsive">
-    <div style="overflow-x: auto;">
-      <table class="table table-borderless text-center shadow" style="min-width: 600px; border: 2px solid #000;">
-        <thead class="table-secondary">
-          <tr class="border-bottom-2">
-            <th style="border-right: 2px solid #000;">Date</th>
-            <th style="border-right: 2px solid #000;">Temp (°F)</th>
-            <th style="border-right: 2px solid #000;">Description</th>
-            <th style="border-right: 2px solid #000;">Main</th>
-            <th style="border-right: 2px solid #000;">Pressure</th>
-            <th>Humidity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border-right: 2px solid #000;">{{ todayDate }}</td>
-            <td style="border-right: 2px solid #000;">{{ weatherData.main.temp | number:'1.0-0' }}</td>
-            <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].description }}</td>
-            <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].main }}</td>
-            <td style="border-right: 2px solid #000;">{{ weatherData.main.pressure }}</td>
-            <td style="border-right: 2px solid #000;">{{ weatherData.main.humidity }}%</td>
-          </tr>
-        </tbody>
-      </table>
+  @if (weatherData) {
+  <div class="container mt-4 text-center">
+    <div class="table-responsive">
+      <div style="overflow-x: auto;">
+        <table class="table table-borderless text-center shadow" style="min-width: 600px; border: 2px solid #000;">
+          <thead class="table-secondary">
+            <tr class="border-bottom-2">
+              <th style="border-right: 2px solid #000;">Date</th>
+              <th style="border-right: 2px solid #000;">Temp (°F)</th>
+              <th style="border-right: 2px solid #000;">Description</th>
+              <th style="border-right: 2px solid #000;">Main</th>
+              <th style="border-right: 2px solid #000;">Pressure</th>
+              <th>Humidity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border-right: 2px solid #000;">{{ todayDate }}</td>
+              <td style="border-right: 2px solid #000;">{{ weatherData.main.temp | number:'1.0-0' }}</td>
+              <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].description }}</td>
+              <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].main }}</td>
+              <td style="border-right: 2px solid #000;">{{ weatherData.main.pressure }}</td>
+              <td style="border-right: 2px solid #000;">{{ weatherData.main.humidity }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="text-end mt-3">
-    <button class="sketch-button" (click)="goHome()">Back</button>
-  </div>
+    <div class="text-end mt-3">
+      <button class="sketch-button" (click)="goHome()">Back</button>
+    </div>
 
-</div>
-} @else {
-<div class="container mt-4 text-center">
-  <h3>Weather Data Not Available</h3>
-  <p>Please enter a city name to get the weather data.</p>
-  <div>
-    <button class="sketch-button" (click)="goHome()">Back</button>
   </div>
-</div>
-}
+  } @else {
+  <app-error></app-error>
+  }
 }
