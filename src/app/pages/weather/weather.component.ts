@@ -14,6 +14,7 @@ export class WeatherComponent {
   city: string = '';
   weatherData: any;
   todayDate: string = '';
+  loading: boolean = true;
 
   constructor(
     private router: Router,
@@ -29,12 +30,16 @@ export class WeatherComponent {
         const now = new Date();
         // Formatting the date as MM/DD/YYYY
         this.todayDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-        console.log('Current date:', this.todayDate);
 
         this.weatherService.getWeather(this.city).subscribe({
           // Handling the response 
           next: (data) => {
             this.weatherData = data;
+
+            // Delay the loading state for 1 second
+            setTimeout(() => {
+              this.loading = false;
+            }, 1000);
           },
           error: (error) => {
             console.error('Error fetching weather data:', error);

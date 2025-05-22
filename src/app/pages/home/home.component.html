@@ -1,8 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="home-container text-center">
     <!-- Profile Info -->
-    <img [src]="user.picture" class="profile-img mb-2" alt="Profile" />
-    <h5>{{ user?.name }}</h5>
+    <h5>{{ user?.name | titlecase}}</h5>
     <p>https://github.com/{{ user.nickname | lowercase}}</p>
 
     <!-- Input + Button -->
