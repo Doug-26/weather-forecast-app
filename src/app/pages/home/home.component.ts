@@ -15,6 +15,7 @@ export class HomeComponent {
 
   city: string = '';
   user: any;
+  isCityEmpty: boolean = false;
 
   constructor(public auth : AuthService, private router : Router) { 
     // Subscribe to the user data from AuthService
@@ -26,5 +27,14 @@ export class HomeComponent {
 
   displayWeather() {
     this.router.navigate(['/weather'], { queryParams: { city: this.city } });
+  }
+
+  displayError() {
+    // setTimeout to simulate loading time
+    this.isCityEmpty = true;
+    setTimeout(() => {
+      this.isCityEmpty = false;
+    }, 3000);
+
   }
 }

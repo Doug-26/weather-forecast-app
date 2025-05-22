@@ -19,12 +19,6 @@ export class NavBarComponent {
     });
   }
 
-  // Function to handle login
-  // Redirects the user to the Auth0 login page
-  login() {
-    this.auth.loginWithRedirect();
-  }
-
   // Function to handle logout
   // Redirects the user to the Auth0 logout page
   logout() {

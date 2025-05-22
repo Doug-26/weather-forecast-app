@@ -26,7 +26,7 @@ export class LandingComponent implements OnInit {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       if (isAuthenticated) {
         this.router.navigate(['/home']);
-      }
+      } 
     });
   }
 

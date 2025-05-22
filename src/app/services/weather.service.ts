@@ -19,7 +19,6 @@ export class WeatherService {
     return this.http.get(url).pipe(
       catchError((error) => {
         // Handle errors here
-        console.error('Error fetching weather data:', error);
         throw error; // Rethrow the error to be handled by the calling component
       })
     );

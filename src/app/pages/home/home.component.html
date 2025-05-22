@@ -8,11 +8,22 @@
     <div class="search-section mt-4">
         <div class="search-input-wrapper mx-auto">
             <i class="bi bi-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="City" [(ngModel)]="city" />
+            <input type="text" class="search-input" placeholder="City" [(ngModel)]="city" required/>
         </div>
 
-        <button class="sketch-button mt-3" (click)="displayWeather()">
-            Display Weather
-        </button>
+        @if (!city.trim()) {
+            @if (isCityEmpty) {
+                <div class="error-message">
+                    <p>Please enter a city name.</p>
+                </div>
+            }
+            <button class="sketch-button mt-3" (click)="displayError()">
+                Display Weather
+            </button>
+        } @else {
+            <button class="sketch-button mt-3" (click)="displayWeather()">
+                Display Weather
+            </button>
+        }
     </div>
 </div>
