@@ -1,25 +1,26 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  private apiKey: string = '7242caf136d86086a3b95c91546e6c4f';
-  private apiUrl: string = 'https://api.openweathermap.org/data/2.5/weather'; 
+  private apiKey: string = environment.weather.apiKey;
+  private apiUrl: string = environment.weather.apiUrl;
 
   constructor(private http : HttpClient) { }
 
-  // Function to get weather data for a specific city
-  getWeather(city: string) {  
-    // Constructing the URL with the city name and API key
-    const url = `${this.apiUrl}?q=${city}&appid=${this.apiKey}&units=imperial`;
-    return this.http.get(url).pipe(
+  getWeather(city: string) {
+    const params = new HttpParams()
+      .set('q', city)
+      .set('appid', this.apiKey)
+      .set('units', 'imperial');
+    return this.http.get(this.apiUrl, { params }).pipe(
       catchError((error) => {
-        // Handle errors here
-        throw error; // Rethrow the error to be handled by the calling component
+        throw error;
       })
     );
   }
