@@ -23,9 +23,26 @@
                     class="search-input"
                     placeholder="e.g. Tokyo, London, New York"
                     [(ngModel)]="city"
+                    (input)="onCityInput()"
+                    (blur)="hideDropdown()"
                     (keydown.enter)="city.trim() ? displayWeather() : displayError()"
+                    autocomplete="off"
                     required
                 />
+
+                @if (showDropdown) {
+                <ul class="city-dropdown">
+                    @for (s of citySuggestions; track s.lat + s.lon) {
+                    <li class="city-dropdown-item" (mousedown)="selectCity(s)">
+                        <i class="bi bi-geo-alt"></i>
+                        <div class="city-dropdown-text">
+                            <span class="city-dropdown-name">{{ s.name }}</span>
+                            <span class="city-dropdown-detail">{{ s.state ? s.state + ', ' : '' }}{{ s.country }}</span>
+                        </div>
+                    </li>
+                    }
+                </ul>
+                }
             </div>
 
             @if (isCityEmpty) {
