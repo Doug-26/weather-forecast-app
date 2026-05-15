@@ -1,7 +1,16 @@
-<div class="container col-6 mt-4 text-center">
-    <h3>Weather Data Not Available</h3>
-    <p>Please enter a city name to get the weather data.</p>
-    <div class="text-end mt-3">
-        <button class="sketch-button" (click)="goHome()">Back</button>
+<div class="error-wrapper">
+    <div class="error-card card-glass fade-in-up">
+        <div class="error-icon-wrapper">
+            <i class="bi bi-cloud-slash"></i>
+        </div>
+        <h3 class="error-title">Oops! No Weather Data</h3>
+        <p class="error-message">
+            We couldn't find weather data for that city.
+            Double-check the name and try again.
+        </p>
+        <button class="btn-warm" (click)="goHome()">
+            <i class="bi bi-arrow-left"></i>
+            Back to Search
+        </button>
     </div>
 </div>

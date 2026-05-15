@@ -1,40 +1,61 @@
 <app-nav-bar></app-nav-bar>
 @if (loading) {
-<app-spinner></app-spinner>
+<div class="weather-loading">
+    <app-spinner></app-spinner>
+</div>
 } @else {
   @if (weatherData) {
-  <div class="container mt-4 text-center">
-    <div class="table-responsive">
-      <div style="overflow-x: auto;">
-        <table class="table table-borderless text-center shadow" style="min-width: 600px; border: 2px solid #000;">
-          <thead class="table-secondary">
-            <tr class="border-bottom-2">
-              <th style="border-right: 2px solid #000;">Date</th>
-              <th style="border-right: 2px solid #000;">Temp (°F)</th>
-              <th style="border-right: 2px solid #000;">Description</th>
-              <th style="border-right: 2px solid #000;">Main</th>
-              <th style="border-right: 2px solid #000;">Pressure</th>
-              <th>Humidity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="border-right: 2px solid #000;">{{ todayDate }}</td>
-              <td style="border-right: 2px solid #000;">{{ weatherData.main.temp | number:'1.0-0' }}</td>
-              <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].description }}</td>
-              <td style="border-right: 2px solid #000;">{{ weatherData.weather[0].main }}</td>
-              <td style="border-right: 2px solid #000;">{{ weatherData.main.pressure }}</td>
-              <td style="border-right: 2px solid #000;">{{ weatherData.main.humidity }}%</td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="weather-wrapper fade-in-up">
+    <!-- Main Weather Card -->
+    <div class="weather-card card-glass">
+      <p class="weather-date">{{ todayDate }}</p>
+      <h2 class="weather-city">{{ weatherData.name }}</h2>
+
+      <div class="weather-main">
+        <img
+          class="weather-icon"
+          [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@4x.png'"
+          [alt]="weatherData.weather[0].description"
+          width="120"
+          height="120"
+        />
+        <div class="weather-temp">{{ weatherData.main.temp | number:'1.0-0' }}°F</div>
+      </div>
+
+      <p class="weather-desc">{{ weatherData.weather[0].description | titlecase }}</p>
+    </div>
+
+    <!-- Detail Tiles -->
+    <div class="detail-grid">
+      <div class="detail-tile card-glass">
+        <i class="bi bi-thermometer-half detail-icon"></i>
+        <span class="detail-label">Feels Like</span>
+        <span class="detail-value">{{ weatherData.main.feels_like | number:'1.0-0' }}°F</span>
+      </div>
+      <div class="detail-tile card-glass">
+        <i class="bi bi-droplet-fill detail-icon"></i>
+        <span class="detail-label">Humidity</span>
+        <span class="detail-value">{{ weatherData.main.humidity }}%</span>
+      </div>
+      <div class="detail-tile card-glass">
+        <i class="bi bi-speedometer detail-icon"></i>
+        <span class="detail-label">Pressure</span>
+        <span class="detail-value">{{ weatherData.main.pressure }} hPa</span>
+      </div>
+      <div class="detail-tile card-glass">
+        <i class="bi bi-wind detail-icon"></i>
+        <span class="detail-label">Wind Speed</span>
+        <span class="detail-value">{{ weatherData.wind.speed }} mph</span>
       </div>
     </div>
 
-    <div class="text-end mt-3">
-      <button class="sketch-button" (click)="goHome()">Back</button>
+    <!-- Back Button -->
+    <div class="weather-actions">
+      <button class="btn-warm" (click)="goHome()">
+        <i class="bi bi-arrow-left"></i>
+        Back to Search
+      </button>
     </div>
-
   </div>
   } @else {
   <app-error></app-error>

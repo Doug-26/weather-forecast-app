@@ -1,29 +1,51 @@
 <app-nav-bar></app-nav-bar>
-<div class="home-container text-center">
-    <!-- Profile Info -->
-    <h5>{{ user?.name | titlecase}}</h5>
-    <p class="text-muted">{{ user?.email }}</p>
-
-    <!-- Input + Button -->
-    <div class="search-section mt-4">
-        <div class="search-input-wrapper mx-auto">
-            <i class="bi bi-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="City" [(ngModel)]="city" required/>
+<div class="home-wrapper">
+    <div class="home-card card-glass fade-in-up">
+        <!-- Profile Info -->
+        <div class="profile-section">
+            <div class="profile-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <h5 class="profile-name">{{ user?.name | titlecase }}</h5>
+            <p class="profile-email">{{ user?.email }}</p>
         </div>
 
-        @if (!city.trim()) {
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <label class="search-label">Search for a city</label>
+            <div class="search-input-wrapper">
+                <i class="bi bi-search search-icon"></i>
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="e.g. Tokyo, London, New York"
+                    [(ngModel)]="city"
+                    (keydown.enter)="city.trim() ? displayWeather() : displayError()"
+                    required
+                />
+            </div>
+
             @if (isCityEmpty) {
-                <div class="error-message">
-                    <p>Please enter a city name.</p>
-                </div>
+            <div class="error-toast fade-in-up">
+                <i class="bi bi-exclamation-circle"></i>
+                Please enter a city name.
+            </div>
             }
-            <button class="sketch-button mt-3" (click)="displayError()">
+
+            @if (!city.trim()) {
+            <button class="btn-warm search-btn" (click)="displayError()">
+                <i class="bi bi-cloud-sun"></i>
                 Display Weather
             </button>
-        } @else {
-            <button class="sketch-button mt-3" (click)="displayWeather()">
+            } @else {
+            <button class="btn-warm search-btn" (click)="displayWeather()">
+                <i class="bi bi-cloud-sun"></i>
                 Display Weather
             </button>
-        }
+            }
+        </div>
     </div>
 </div>

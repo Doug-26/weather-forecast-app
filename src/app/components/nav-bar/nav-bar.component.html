@@ -1,15 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm px-3 mb-5" style="border-bottom: solid;">
-    <div class="container-fluid">
-        <!-- Cloud image and title -->
-        <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;" (click)="navigateToHome()">
-            <i class="bi bi-thermometer-sun pe-2" style="font-size:xx-large"></i>
-            <span class="d-none d-lg-inline title">Klima</span>
+<nav class="klima-nav">
+    <div class="nav-inner">
+        <a class="nav-brand" (click)="navigateToHome()">
+            <i class="bi bi-thermometer-sun nav-icon"></i>
+            <span class="nav-title">Klima</span>
         </a>
 
-        <!-- Always visible Logout button on all screen sizes -->
-        <div class="d-flex ms-auto">
+        <div class="nav-actions">
             @if (isAuthenticated) {
-            <button class="sketch-button" (click)="logout()">
+            <button class="btn-warm-outline" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i>
                 Logout
             </button>
             }

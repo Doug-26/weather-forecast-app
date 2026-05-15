@@ -6,7 +6,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [NavBarComponent, SpinnerComponent],
+  imports: [SpinnerComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
